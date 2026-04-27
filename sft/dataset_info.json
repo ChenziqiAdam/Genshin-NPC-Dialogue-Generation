@@ -1,0 +1,11 @@
+{
+  "zhongli_sft": {
+    "file_name": "zhongli_sft.json",
+    "columns": {
+      "system": "system",
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  }
+}
