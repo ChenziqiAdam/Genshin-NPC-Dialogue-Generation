@@ -27,11 +27,19 @@ fi
 source "$VENV_DIR/bin/activate"
 
 # Install inference deps only if not already installed
-if ! python -c "import vllm, gradio, openai" 2>/dev/null; then
+if ! python -c "import vllm, gradio, openai, sentence_transformers, faiss" 2>/dev/null; then
     echo ">>> Installing inference dependencies..."
-    uv pip install vllm gradio openai
+    uv pip install vllm gradio openai sentence-transformers faiss-cpu
 else
     echo ">>> Dependencies already installed, skipping."
+fi
+
+# Build RAG index if not already built
+if [ ! -f "rag/zhongli.index" ]; then
+    echo ">>> Building RAG index..."
+    python rag/build_index.py
+else
+    echo ">>> RAG index already exists, skipping."
 fi
 
 # Start vLLM in background
