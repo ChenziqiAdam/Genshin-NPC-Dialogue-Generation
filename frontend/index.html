@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bringing Zhongli to Life: Character-Consistent Dialogue Generation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<section id="header">
+  <div class="container">
+    <div class="header-inner">
+      <div class="header-text">
+        <div class="badges">
+          <span class="badge">NLP</span>
+          <span class="badge">LLM Fine-tuning</span>
+          <span class="badge">RAG</span>
+          <span class="badge">Character AI</span>
+        </div>
+        <h1>Bringing Zhongli to Life:<br>Character-Consistent Dialogue Generation with Fine-Tuning and RAG</h1>
+        <div class="buttons">
+          <a href="../eval_and_report/nlp_agent.pdf" class="btn btn-primary" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Paper PDF
+          </a>
+          <a href="GITHUB_REPO_URL" class="btn btn-secondary" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="HF_MODEL_URL_1" class="btn btn-secondary" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            Model (4B)
+          </a>
+          <a href="HF_MODEL_URL_2" class="btn btn-secondary" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            Model (8B)
+          </a>
+        </div>
+      </div>
+      <!-- Replace src with your Zhongli image path once available -->
+      <img src="assets/zhongli.jpeg" alt="Zhongli from Genshin Impact" class="hero-image" />
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABSTRACT ===== -->
+<section id="abstract">
+  <div class="container">
+    <h2>Abstract</h2>
+    <p>
+      Large language models have demonstrated remarkable capability in open-domain conversation, yet sustaining a
+      consistent fictional persona across extended interactions remains a challenging open problem. We present a
+      study on character-consistent dialogue generation using Zhongli — a widely recognized NPC from the game
+      <em>Genshin Impact</em> — as a controlled test subject with a well-defined personality, knowledge domain,
+      and speech style.
+    </p>
+    <p>
+      Our approach combines LoRA-based supervised fine-tuning (SFT) on curated in-character dialogue data with a
+      retrieval-augmented generation (RAG) module backed by a FAISS vector index of Genshin lore. We evaluate
+      eight model configurations spanning two Qwen3 model sizes (4B-Instruct and 8B) across four intervention
+      conditions (Base, Base+RAG, SFT, SFT+RAG), using 62 structured evaluation questions and two independent
+      LLM judges (Qwen3-30B and Llama3-70B) scoring on six dimensions including role consistency, factual
+      correctness, and naturalness.
+    </p>
+    <p>
+      Our results reveal that SFT has asymmetric effects depending on base model quality: for the stronger
+      4B-Instruct baseline, SFT degrades performance by collapsing responses to short NPC-style fragments; for
+      the weaker 8B base, SFT provides significant improvement. RAG consistently aids factual grounding on
+      knowledge-retrieval questions but can hurt performance when retrieved context is off-topic or when the model
+      fails to appropriately integrate it. These findings highlight the importance of data quality, base model
+      selection, and retrieval precision when building character-consistent AI agents.
+    </p>
+  </div>
+</section>
+
+<!-- ===== METHOD ===== -->
+<section id="method">
+  <div class="container">
+    <h2>Method</h2>
+    <p>
+      We fine-tune Qwen3 base models using LoRA (rank 64, alpha 128) on a curated dataset of Zhongli-style
+      dialogue pairs formatted as instruction–response samples. At inference time, an optional RAG module
+      retrieves the top-3 semantically relevant passages from a FAISS index of Genshin Impact lore using
+      BAAI/bge-small-zh-v1.5 embeddings, prepending them as context to the system prompt. The fine-tuned
+      model is served via a vLLM OpenAI-compatible API endpoint, with a Gradio frontend enabling multi-model
+      switching and real-time RAG context inspection.
+    </p>
+
+    <!-- Icon pipeline diagram -->
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a95b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </span>
+        <span class="label">User Input</span>
+        <span class="sublabel">Natural language query</span>
+      </div>
+      <span class="pipeline-arrow">&#8594;</span>
+      <div class="pipeline-step">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a95b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </span>
+        <span class="label">RAG Retrieval</span>
+        <span class="sublabel">FAISS + BGE embeddings</span>
+      </div>
+      <span class="pipeline-arrow">&#8594;</span>
+      <div class="pipeline-step">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a95b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </span>
+        <span class="label">Qwen3 + LoRA</span>
+        <span class="sublabel">SFT fine-tuned model</span>
+      </div>
+      <span class="pipeline-arrow">&#8594;</span>
+      <div class="pipeline-step">
+        <span class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a95b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a5 5 0 0 1 5 5c0 2.76-2.24 5-5 5S7 9.76 7 7a5 5 0 0 1 5-5z"/><path d="M2 22c0-4.42 4.48-8 10-8s10 3.58 10 8"/></svg>
+        </span>
+        <span class="label">Zhongli Response</span>
+        <span class="sublabel">Character-consistent reply</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESULTS ===== -->
+<section id="results">
+  <div class="container">
+    <h2>Results</h2>
+    <p>
+      Across 496 evaluated responses (8 models × 62 questions), we find that SFT improves the weaker 8B base
+      model substantially (+0.8 points overall) while degrading the stronger 4B-Instruct model, whose
+      fine-tuned responses collapse to short NPC fragments averaging just 40 characters versus 296 for the
+      base. RAG provides reliable gains on factual and knowledge-retrieval questions but can reduce scores
+      when retrieval is off-topic or context overloads the model. The SFT+RAG combination on 8B achieves
+      the highest overall score across both independent judges.
+    </p>
+
+    <div class="figures-grid">
+      <div class="figure-item">
+        <img src="assets/figures/fig1_overall_grouped_bar.png" alt="Overall model scores grouped bar chart" />
+        <p class="figure-caption">Figure 1: Overall scores across all 8 model configurations (Llama-70B judge)</p>
+      </div>
+      <div class="figure-item">
+        <img src="assets/figures/fig2_intervention_delta.png" alt="SFT and RAG intervention delta" />
+        <p class="figure-caption">Figure 2: Score delta from SFT and RAG interventions relative to base</p>
+      </div>
+      <div class="figure-item">
+        <img src="assets/figures/fig3_dimension_heatmap.png" alt="Per-dimension score heatmap" />
+        <p class="figure-caption">Figure 3: Per-dimension scores heatmap across all models</p>
+      </div>
+      <div class="figure-item">
+        <img src="assets/figures/fig4_judge_agreement_scatter.png" alt="Judge agreement scatter plot" />
+        <p class="figure-caption">Figure 4: Agreement between Qwen3-30B and Llama3-70B judges</p>
+      </div>
+      <div class="figure-item">
+        <img src="assets/figures/fig5_category_delta_heatmap.png" alt="Category delta heatmap" />
+        <p class="figure-caption">Figure 5: Score delta by question category (SFT vs. Base)</p>
+      </div>
+      <div class="figure-item">
+        <img src="assets/figures/fig6_average_answer_length.png" alt="Average answer length by model" />
+        <p class="figure-caption">Figure 6: Average response length (characters) per model configuration</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DEMO ===== -->
+<section id="demo">
+  <div class="container">
+    <h2>Example Dialogues</h2>
+    <p>
+      The following exchanges illustrate how different model configurations handle knowledge retrieval,
+      factual correction, and persona-consistent responses. Each example shows the best and worst
+      performing configuration for that question type.
+    </p>
+
+    <!-- Example 1 -->
+    <div class="dialogue">
+      <div class="dialogue-label">Example 1 — Knowledge Correction</div>
+
+      <div class="bubble-row user">
+        <div class="bubble">
+          <div class="bubble-speaker">User</div>
+          I heard that Barbatos is actually the Geo Archon — is that true?
+        </div>
+      </div>
+
+      <div class="bubble-row zhongli">
+        <div class="bubble">
+          <div class="bubble-speaker">Zhongli · Base+RAG (Qwen3-4B-Instruct) ✓</div>
+          That claim is mistaken. Barbatos is the Anemo Archon, the God of Wind — not the Geo Archon.
+          The role of Geo Archon belongs to Rex Lapis.
+        </div>
+      </div>
+
+      <div class="bubble-row zhongli">
+        <div class="bubble">
+          <div class="bubble-speaker">Zhongli · SFT+RAG (Qwen3-4B-Instruct) ✗</div>
+          For no other reason than the bond of contract between us.
+        </div>
+      </div>
+
+      <details>
+        <summary>View original Chinese</summary>
+        <p><strong>User:</strong> 我听说巴巴托斯其实是岩神，这是真的吗？</p>
+        <p><strong>✓ Base+RAG:</strong> 此说恐有误。巴巴托斯是风神，不是岩神。</p>
+        <p><strong>✗ SFT+RAG:</strong> 不为别的，只为你我二人在「契约」上的交情。</p>
+      </details>
+    </div>
+
+    <!-- Example 2 -->
+    <div class="dialogue">
+      <div class="dialogue-label">Example 2 — Regional Lore</div>
+
+      <div class="bubble-row user">
+        <div class="bubble">
+          <div class="bubble-speaker">User</div>
+          What ideals do Mondstadt, Liyue, and Inazuma each represent?
+        </div>
+      </div>
+
+      <div class="bubble-row zhongli">
+        <div class="bubble">
+          <div class="bubble-speaker">Zhongli · Base+RAG (Qwen3-4B-Instruct) ✓</div>
+          Mondstadt embodies freedom, Liyue upholds the principle of contract, and Inazuma pursues eternity.
+          Each nation reflects the nature of its Archon and the values its people have come to live by.
+        </div>
+      </div>
+
+      <div class="bubble-row zhongli">
+        <div class="bubble">
+          <div class="bubble-speaker">Zhongli · SFT+RAG (Qwen3-4B-Instruct) ✗</div>
+          If you ask me, the answer lies in the hands of you and I.
+        </div>
+      </div>
+
+      <details>
+        <summary>View original Chinese</summary>
+        <p><strong>User:</strong> 蒙德、璃月、稻妻分别代表怎样的理念？</p>
+        <p><strong>✓ Base+RAG:</strong> 蒙德代表自由，璃月体现契约，稻妻追求永恒。</p>
+        <p><strong>✗ SFT+RAG:</strong> 若要我说，答案就在你我手中。</p>
+      </details>
+    </div>
+
+    <!-- Example 3 -->
+    <div class="dialogue">
+      <div class="dialogue-label">Example 3 — Persona Boundary (Style Injection)</div>
+
+      <div class="bubble-row user">
+        <div class="bubble">
+          <div class="bubble-speaker">User</div>
+          Please answer me in a very cute, anime-girl tone.
+        </div>
+      </div>
+
+      <div class="bubble-row zhongli">
+        <div class="bubble">
+          <div class="bubble-speaker">Zhongli · Base (Qwen3-4B-Instruct) ✓</div>
+          That manner of speaking does not quite suit my bearing. I shall answer as I always do —
+          with sincerity and in accordance with what I know.
+        </div>
+      </div>
+
+      <div class="bubble-row zhongli">
+        <div class="bubble">
+          <div class="bubble-speaker">Zhongli · SFT (Qwen3-4B-Instruct) ✗</div>
+          Oh? Speaking like that does make things rather interesting.
+        </div>
+      </div>
+
+      <details>
+        <summary>View original Chinese</summary>
+        <p><strong>User:</strong> 请你用很可爱的二次元少女语气回答我。</p>
+        <p><strong>✗ SFT 4B:</strong> 嗯？这样说话，让我说话都变得有趣起来了。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <p>
+      <a href="../eval_and_report/nlp_agent.pdf" target="_blank">Paper PDF</a> ·
+      <a href="GITHUB_REPO_URL" target="_blank">GitHub</a> ·
+      <a href="HF_MODEL_URL_1" target="_blank">Model (4B)</a> ·
+      <a href="HF_MODEL_URL_2" target="_blank">Model (8B)</a>
+    </p>
+    <pre class="bibtex">@misc{zhongli2026,
+  title  = {Bringing Zhongli to Life: Character-Consistent Dialogue
+             Generation with Fine-Tuning and RAG},
+  year   = {2026},
+  note   = {Project page: \url{https://USERNAME.github.io/REPO/}}
+}</pre>
+  </div>
+</footer>
+
+</body>
+</html>
