@@ -2,6 +2,7 @@
 # Zhongli LoRA Training Setup & Launch Script
 # Run this on the remote server with 5x A800 GPUs
 
+export HF_HUB_OFFLINE=1
 set -e
 
 # ============ Step 1: Install LLaMA-Factory ============
@@ -15,12 +16,12 @@ echo ">>> Installing LLaMA-Factory..."
 pip install -e ".[torch,metrics,deepspeed]"
 
 # ============ Step 2: Download Qwen3-8B ============
-echo ">>> Downloading Qwen3-8B (skip if already cached)..."
-hf download Qwen/Qwen3-8B
+# echo ">>> Downloading Qwen3-8B (skip if already cached)..."
+# hf download Qwen/Qwen3-8B
 
 # ============ Step 3: Prepare dataset ============
 echo ">>> Copying dataset and config..."
-cp ../zhongli_sft.json data/
+cp ../zhongli_sft_augmented.json data/
 # Merge our dataset entry into LLaMA-Factory's dataset_info.json
 python3 -c "
 import json
