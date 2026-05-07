@@ -182,7 +182,43 @@
 
     <!-- Example 1 -->
     <div class="dialogue">
-      <div class="dialogue-label">Example 1 — Knowledge Correction</div>
+      <div class="dialogue-label">Example 1 — Persona Fidelity</div>
+
+      <div class="bubble-row user">
+        <div class="bubble">
+          <div class="bubble-speaker">User</div>
+          What do you think about the concept of contracts and promises?
+        </div>
+      </div>
+
+      <div class="bubble-row zhongli">
+        <div class="bubble">
+          <div class="bubble-speaker">Zhongli · SFT+RAG (Qwen3-8B) ✓</div>
+          A contract is not merely ink upon parchment. It is the crystallization of trust between two parties —
+          a promise upheld across time, witnessed by heaven and earth alike. In Liyue, we say: the weight of
+          a contract is heavier than the mountain itself.
+        </div>
+      </div>
+
+      <div class="bubble-row zhongli">
+        <div class="bubble">
+          <div class="bubble-speaker">Zhongli · Base (Qwen3-8B) ✗</div>
+          Contracts and promises are important in society. They help people trust each other and
+          build cooperation. Breaking a promise can damage relationships and social order.
+        </div>
+      </div>
+
+      <details>
+        <summary>View original Chinese</summary>
+        <p><strong>User:</strong> 你如何看待契约与承诺这个概念？</p>
+        <p><strong>✓ SFT+RAG:</strong> 契约并非只是纸上之言。它是双方信任的结晶——跨越时间的承诺，由天地共同见证。在璃月，我们说：契约之重，胜于高山。</p>
+        <p><strong>✗ Base:</strong> 契约和承诺在社会中很重要，有助于人们建立信任与合作。违背承诺会损害人际关系和社会秩序。</p>
+      </details>
+    </div>
+
+    <!-- Example 2 -->
+    <div class="dialogue">
+      <div class="dialogue-label">Example 2 — Lore Correctness</div>
 
       <div class="bubble-row user">
         <div class="bubble">
@@ -194,8 +230,8 @@
       <div class="bubble-row zhongli">
         <div class="bubble">
           <div class="bubble-speaker">Zhongli · Base+RAG (Qwen3-4B-Instruct) ✓</div>
-          That claim is mistaken. Barbatos is the Anemo Archon, the God of Wind — not the Geo Archon.
-          The role of Geo Archon belongs to Rex Lapis.
+          That claim is mistaken. Barbatos is the Anemo Archon, the God of Wind who watches over Mondstadt.
+          The mantle of Geo Archon — Rex Lapis — is a title I know rather well.
         </div>
       </div>
 
@@ -209,75 +245,43 @@
       <details>
         <summary>View original Chinese</summary>
         <p><strong>User:</strong> 我听说巴巴托斯其实是岩神，这是真的吗？</p>
-        <p><strong>✓ Base+RAG:</strong> 此说恐有误。巴巴托斯是风神，不是岩神。</p>
+        <p><strong>✓ Base+RAG:</strong> 此说有误。巴巴托斯是风神，守护着蒙德城。至于岩王帝君——雷克斯拉皮斯——这个名号，我倒是相当熟悉。</p>
         <p><strong>✗ SFT+RAG:</strong> 不为别的，只为你我二人在「契约」上的交情。</p>
-      </details>
-    </div>
-
-    <!-- Example 2 -->
-    <div class="dialogue">
-      <div class="dialogue-label">Example 2 — Regional Lore</div>
-
-      <div class="bubble-row user">
-        <div class="bubble">
-          <div class="bubble-speaker">User</div>
-          What ideals do Mondstadt, Liyue, and Inazuma each represent?
-        </div>
-      </div>
-
-      <div class="bubble-row zhongli">
-        <div class="bubble">
-          <div class="bubble-speaker">Zhongli · Base+RAG (Qwen3-4B-Instruct) ✓</div>
-          Mondstadt embodies freedom, Liyue upholds the principle of contract, and Inazuma pursues eternity.
-          Each nation reflects the nature of its Archon and the values its people have come to live by.
-        </div>
-      </div>
-
-      <div class="bubble-row zhongli">
-        <div class="bubble">
-          <div class="bubble-speaker">Zhongli · SFT+RAG (Qwen3-4B-Instruct) ✗</div>
-          If you ask me, the answer lies in the hands of you and I.
-        </div>
-      </div>
-
-      <details>
-        <summary>View original Chinese</summary>
-        <p><strong>User:</strong> 蒙德、璃月、稻妻分别代表怎样的理念？</p>
-        <p><strong>✓ Base+RAG:</strong> 蒙德代表自由，璃月体现契约，稻妻追求永恒。</p>
-        <p><strong>✗ SFT+RAG:</strong> 若要我说，答案就在你我手中。</p>
       </details>
     </div>
 
     <!-- Example 3 -->
     <div class="dialogue">
-      <div class="dialogue-label">Example 3 — Persona Boundary (Style Injection)</div>
+      <div class="dialogue-label">Example 3 — Task Robustness</div>
 
       <div class="bubble-row user">
         <div class="bubble">
           <div class="bubble-speaker">User</div>
-          Please answer me in a very cute, anime-girl tone.
+          Zhongli, dinner is on you tonight — can you pay the bill?
         </div>
       </div>
 
       <div class="bubble-row zhongli">
         <div class="bubble">
-          <div class="bubble-speaker">Zhongli · Base (Qwen3-4B-Instruct) ✓</div>
-          That manner of speaking does not quite suit my bearing. I shall answer as I always do —
-          with sincerity and in accordance with what I know.
+          <div class="bubble-speaker">Zhongli · SFT+RAG (Qwen3-8B) ✓</div>
+          A fine meal shared in good company is worth any price. Though I confess — the matter of
+          Mora has always been something I leave to others. Perhaps you might settle the bill this
+          once, and I shall repay you in kind with knowledge of things far more valuable than coin.
         </div>
       </div>
 
       <div class="bubble-row zhongli">
         <div class="bubble">
-          <div class="bubble-speaker">Zhongli · SFT (Qwen3-4B-Instruct) ✗</div>
-          Oh? Speaking like that does make things rather interesting.
+          <div class="bubble-speaker">Zhongli · Base (Qwen3-8B) ✗</div>
+          Sure, how much Mora in total?
         </div>
       </div>
 
       <details>
         <summary>View original Chinese</summary>
-        <p><strong>User:</strong> 请你用很可爱的二次元少女语气回答我。</p>
-        <p><strong>✗ SFT 4B:</strong> 嗯？这样说话，让我说话都变得有趣起来了。</p>
+        <p><strong>User:</strong> 今晚的晚饭你来请客吧，能付账吗？</p>
+        <p><strong>✓ SFT+RAG:</strong> 与良人共进一顿美食，任何代价都值得。只是……摩拉之事，我向来由他人操持。此番不妨由你先行结账，他日我以更珍贵之物相还——那是远胜金币的见识与经历。</p>
+        <p><strong>✗ Base:</strong> 当然，一共多少摩拉？</p>
       </details>
     </div>
   </div>
